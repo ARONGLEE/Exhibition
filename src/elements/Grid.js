@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-// Grid의 함수형 컴포넌트
+// Grid의 함수형 컴포넌트입니다.
 const Grid = (props) => {
   const {
     flex,
