@@ -19,7 +19,8 @@ Text.dedaultProps = {
 const P = styled.div`
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "600" : "400")};
-  ${(props) => (props.color ? `margin: ${props.color};` : "")}
+  //아영 - 오타수정
+  ${(props) => (props.color ? `color: ${props.color};` : "")}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 `;
 
