@@ -23,8 +23,8 @@ const setLoginDB = (userlogin) => {
     apis
       .login(userlogin)
       .then((res) => {
-        setCookie("token", res.data[2].token, 7);
-        localStorage.setItem("username", res.data[0].username, 7);
+        setCookie("token", res.data[0].token);
+        localStorage.setItem("role", res.data[1].role);
         history.replace("/");
       })
       .catch((err) => {
