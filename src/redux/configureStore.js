@@ -6,6 +6,7 @@ import { connectRouter } from "connected-react-router";
 import Image from "./modules/image";
 import Work from "./modules/work";
 import user from "./modules/user";
+import Artist from "./modules/artist";
 
 export const history = createBrowserHistory();
 
@@ -13,15 +14,16 @@ const rootReducer = combineReducers({
   image: Image,
   work: Work,
   user: user,
-  router: connectRouter(history)
+  artist: Artist,
+  router: connectRouter(history),
 });
 
-const middlewares = [thunk.withExtraArgument({history:history})];
+const middlewares = [thunk.withExtraArgument({ history: history })];
 
 // env notice
 const env = process.env.NODE_ENV;
 
-// logger (dev env) 
+// logger (dev env)
 if (env === "development") {
   const { logger } = require("redux-logger");
   middlewares.push(logger);

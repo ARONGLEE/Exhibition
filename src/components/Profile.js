@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Text, Image } from "../elements";
+import HeartButton from "./HeartButton";
 
 const Profile = (props) => {
   return (
@@ -22,6 +23,9 @@ const Profile = (props) => {
           <Text size="13px" color="#b9b2b2">
             Description
           </Text>
+        </Grid>
+        <Grid>
+          <HeartButton />
         </Grid>
       </Grid>
     </React.Fragment>
