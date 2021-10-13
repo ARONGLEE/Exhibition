@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import Header from "../components/Header";
 import Work from "../components/Work";
 import { actionCreators as postActions } from "../redux/modules/work";
 
@@ -16,6 +17,7 @@ const WorkList = (props) => {
 
     return(
         <React.Fragment>
+            <Header/>
             {work_list.map((w, idx) => {
                 return <Work key={w.id} {...w}/>
             })}
