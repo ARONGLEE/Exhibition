@@ -1,38 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Grid, Text, Input, Button } from "../elements/index";
 
-// Login의 함수형 컴포넌트입니다.
+import { useHistory } from "react-router";
+
+import { useDispatch } from "react-redux";
+import { userCreators } from "../redux/modules/user";
+
 const Login = (props) => {
+  const history = useHistory();
+
+  const dispatch = useDispatch();
+
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
+  const [artist, setArtist] = useState("");
+
+  const userlogin = {
+    password: pw,
+    nickname: id,
+    isArtist: artist,
+  };
+
+  const login = () => {
+    dispatch(userCreators.setLoginDB(userlogin));
+  };
   return (
     <React.Fragment>
       <Grid
         border="1px solid #DCDCDC"
         width="350px"
-        margin="120px auto"
+        margin="60px auto"
         padding="20px"
+        center
       >
         {/* 메인 Text */}
         <Grid center>
-          <Text size="32px" bold>
-            ARTIST
-          </Text>
+          <Text size="32px">ARTIST</Text>
         </Grid>
 
         {/* 아이디 */}
         <Grid center margin="30px 0">
-          <Input placeholder="아이디를 입력해주세요." />
+          <Input
+            placeholder="아이디를 입력해주세요."
+            padding="16px 14px"
+            width="300px"
+            _onChange={(e) => setId(e.target.value)}
+          />
         </Grid>
 
         {/* 비밀번호 */}
         <Grid center margin="30px 0">
-          <Input placeholder="비밀번호를 입력해주세요." type="password" />
+          <Input
+            placeholder="비밀번호를 입력해주세요."
+            type="password"
+            padding="16px 14px"
+            width="300px"
+            _onChange={(e) => setPw(e.target.value)}
+          />
         </Grid>
 
         {/* 로그인 */}
         <Grid flex>
-          <Button width="300px" padding="12px 4px" margin="4px">
+          <Button
+            width="300px"
+            padding="12px 4px"
+            margin="4px"
+            _onClick={login}
+          >
             로그인
           </Button>
         </Grid>
@@ -46,7 +82,7 @@ const Login = (props) => {
 
         {/* 회원가입 Text & 버튼 */}
         <Grid flex>
-          <Text color="#DCDCDC" size="15px">
+          <Text color="#DCDCDC" size="15px" margin="16px auto">
             아직 회원이 아니라면?
             <button
               style={{
@@ -56,6 +92,9 @@ const Login = (props) => {
                 margin: "30px 0",
                 textDecoration: "underline",
                 cursor: "pointer",
+              }}
+              onClick={() => {
+                props.history.push("/signup");
               }}
             >
               회원가입
