@@ -1,6 +1,5 @@
 import React from "react";
-import { Grid, Text } from "../elements";
-import img from "../shared/basic.jpg";
+import { Grid, Text, Image } from "../elements";
 
 const Profile = (props) => {
   return (
@@ -12,8 +11,8 @@ const Profile = (props) => {
         width="70vw"
         margin="auto"
       >
-        <Grid flex justify-content="left">
-          <img src={img} width="90px" />
+        <Grid flex justify-content="left" width="30%">
+          <Image shape="circle" src={props.src} />
         </Grid>
         <Grid>
           <Text size="20px" bold>
