@@ -14,13 +14,15 @@ const Modal = ({modalClose}, props) => {
 
     }
     return (
-        <div className="modal__container" onClick={onCloseModal}>
-            <div className="modal">
-                <Image shape= "rectangle" src={props.src}/>
-                <button className="modal__button" onClick={modalClose}> Modal Close</button>
+        <React.Fragment>
+            <div className="modal__container" onClick={onCloseModal}>
+                <div className="modal">
+                    <Image shape= "rectangle" src={props.src}/>
+                    <button className="modal__button" onClick={modalClose}> Modal Close</button>
+                </div>
             </div>
-        </div>
+        </React.Fragment>
     )
 }
 
-export default Modal
+export default Modal;
