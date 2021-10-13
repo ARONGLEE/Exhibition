@@ -1,0 +1,24 @@
+{
+  "work": [
+    {
+      "id": 1,
+      "image": "https://cdn.crowdpic.net/list-thumb/thumb_l_9BD9FA80F625F99EB1143BF2AD075860.jpg",
+      "workTitle": "Lorem",
+      "workDesc": "lorem ipsum dolor sit amet consectetur adipiscing elit",
+      "workSize": "160 * 160cm",
+      "workMetarial": "mixed media",
+      "workMade": "2021"
+    }
+  ],
+  "artist": [
+    {
+      "artistId": 1,
+      "profileImg": "https://mblogthumb-phinf.pstatic.net/20160316_188/machsz_1458108041064UOBNl_JPEG/22.jpg?type=w2",
+      "artistDesc": "lorem ipsum dolor sit amet consectetur adipiscing elit",
+      "nickname": "artist1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
