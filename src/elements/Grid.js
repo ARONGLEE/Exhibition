@@ -14,7 +14,8 @@ const Grid = (props) => {
     _onClick,
     border,
     // 재환: 3x3 정렬을 위한 그리드
-    grid
+    grid,
+    justifyContent,
   } = props;
 
   const styles = {
@@ -26,7 +27,8 @@ const Grid = (props) => {
     center: center,
     border: border,
     // 재환: 3x3 정렬을 위한 그리드
-    grid: grid
+    grid: grid,
+    justifyContent: justifyContent,
   };
 
   return (
@@ -47,9 +49,10 @@ Grid.defaultProps = {
   background: false,
   center: false,
   border: false,
+  justifyContent: false,
   _onClick: () => {},
   // 재환: 3x3 정렬을 위한 그리드 설정
-  grid: false
+  grid: false,
 };
 
 const GridBox = styled.div`
@@ -69,13 +72,14 @@ const GridBox = styled.div`
     ${(props) => (props.center ? `text-align: center` : "")}
     // 재환: 3x3 정렬을 위한 기본 값 설정
     ${(props) =>
-      props.grid
-        ? `display:grid; 
+    props.grid
+      ? `display:grid; 
         grid-gap: 4px; 
         grid-template-columns: repeat(3, minmax(auto, 1fr));
         align-items: center; 
         justify-content: space-around;`
-        : ""}
+      : ""}
+    ${(props) => (props.justifyContent ? `justify-content: left` : "")}
 `;
 
 export default Grid;

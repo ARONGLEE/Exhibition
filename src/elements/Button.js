@@ -3,8 +3,25 @@ import styled from "styled-components";
 
 // Button의 함수형 컴포넌트입니다.
 const Button = (props) => {
-  const { children, text, width, padding, margin, background, _onClick } =
-    props;
+  const {
+    children,
+    is_float,
+    text,
+    width,
+    padding,
+    margin,
+    background,
+    _onClick,
+  } = props;
+
+  //아영 - 게시글 쓰기 버튼 추가
+  if (is_float) {
+    return (
+      <React.Fragment>
+        <FixBotton onClick={_onClick}>{text ? text : children}</FixBotton>
+      </React.Fragment>
+    );
+  }
 
   const styles = {
     text: text,
@@ -29,6 +46,7 @@ Button.defaultProps = {
   width: false,
   padding: false,
   margin: false,
+  is_float: false,
   background: false,
   _onClick: () => {},
 };
@@ -56,12 +74,12 @@ const FixBotton = styled.button`
   height: 50px;
   font-size: 36px;
   font-size: 600;
-  color: #fff;
-  background-color: #46de99;
+  color: #dcdcdc;
+  background-color: #ffffff;
   right: 18px;
   bottom: 50px;
   text-align: center;
-  border: none;
+  border: 2px solid #dcdcdc;
   border-radius: 50%;
   cursor: pointer;
   vertical-align: middle;

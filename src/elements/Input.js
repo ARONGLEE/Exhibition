@@ -5,12 +5,23 @@ import { Text, Grid } from "./index";
 
 // Input의 함수형 컴포넌트입니다.
 const Input = (props) => {
-  const { label, placeholder, type, onSubmit, _onChange, children } = props;
+  const {
+    label,
+    placeholder,
+    // 아영- 게시글쓰기 input창 여백 때문에 margin 추가
+    margin,
+    type,
+    onSubmit,
+    _onChange,
+    children,
+  } = props;
 
   const styles = {
     label: label,
     placeholder: placeholder,
     type: type,
+    // 아영- 게시글쓰기 input창 여백 때문에 margin 추가
+    margin: margin,
   };
 
   return (
@@ -30,6 +41,8 @@ Input.defaultProps = {
   type: "text",
   onSubmit: () => {},
   _onChange: () => {},
+  // 아영- 게시글쓰기 input창 여백 때문에 margin 추가
+  margin: false,
 };
 
 const ElementTextarea = styled.textarea`
@@ -47,6 +60,8 @@ const ElementInput = styled.input`
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+  // 아영- 게시글쓰기 input창 여백 때문에 margin 추가
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 `;
 
 export default Input;
