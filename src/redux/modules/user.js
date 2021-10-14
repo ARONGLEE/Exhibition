@@ -33,10 +33,10 @@ const setLoginDB = (userlogin) => {
   };
 };
 
-const registerDB = (userinfo) => {
+const registerDB = (id, nick, pw, is_artist) => {
   return function (dispatch, getState, { history }) {
     apis
-      .signup(userinfo)
+      .signup(id, nick, pw, is_artist)
       .then((res) => {
         history.push("/");
       })
