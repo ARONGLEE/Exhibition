@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/axios";
+import { actionCreators as imageActions } from "./image";
 
 // action 생성
 const LOAD_WORK = "LOAD_WORK";
@@ -30,15 +31,19 @@ const getWorkMiddleware = () => {
   };
 };
 
-const addWorkMiddleware = (work) => {
-  return (dispatch) => {
+const addWorkDB = (content) => {
+  return function (dispatch, getState, { history }) {
     apis
-      .createPost(work)
+      .createWork(content)
       .then(() => {
-        dispatch(addWork(work));
+        dispatch(addWork(content));
+        //dispatch(imageActions.setPreview(null));
+      })
+      .then(() => {
+        history.goBack();
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   };
 };
@@ -58,9 +63,9 @@ export default handleActions(
   initialState
 );
 
-const workCreators = {
+const actionCreators = {
   getWorkMiddleware,
-  addWorkMiddleware,
+  addWorkDB,
 };
 
-export { workCreators };
+export { actionCreators };
