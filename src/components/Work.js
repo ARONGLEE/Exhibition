@@ -1,30 +1,29 @@
-import React from "react";
+import React, { useEffect } from 'react';
 
 import Grid from "../elements/Grid";
 import Image from "../elements/Image";
 import ModalContainer from "./ModalContainer";
-const Work = (props) => {
+
+import { useDispatch, useSelector } from 'react-redux';
+import { getWorkMiddleware } from '../redux/modules/work';
+
+const Work = (
+  props
+  ) => {
+    console.log(props);
+  // const dispatch = useDispatch();
+  // const work = useSelector((store) => store.work.work_list);
+
   return (
     <React.Fragment>
-      <Grid grid>
-        <Image shape="rectangle" src={props.src} />
-        <Image shape="rectangle" src={props.src} />
-        <Image shape="rectangle" src={props.src} />
-        <Image shape="rectangle" src={props.src} />
-        <Image shape="rectangle" src={props.src} />
-        <Image shape="rectangle" src={props.src} />
-        <Image shape="rectangle" src={props.src} />
-        <Image shape="rectangle" src={props.src} />
-        <Image shape="rectangle" src={props.src} />
-      </Grid>
-      <ModalContainer />
+        <Image shape="rectangle" src={props.image}/>
     </React.Fragment>
   );
 };
 
 Work.defaultProps = {
-  image_url:
-    "https://mblogthumb-phinf.pstatic.net/20160316_188/machsz_1458108041064UOBNl_JPEG/22.jpg?type=w2",
+  image:
+    "https://cdn.crowdpic.net/list-thumb/thumb_l_7BE2B0B597B156E87AAF3C41AB15ABEC.jpg",
   workTitle: "Lorem",
   workDesc: "lorem ipsum dolor sit amet consectetur adipiscing elit",
   workSize: "160 * 160cm",

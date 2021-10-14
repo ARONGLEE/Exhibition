@@ -7,6 +7,7 @@ import { useHistory } from "react-router";
 
 import { useDispatch } from "react-redux";
 import { userCreators } from "../redux/modules/user";
+import Header from "../components/Header";
 
 const Login = (props) => {
   const history = useHistory();
