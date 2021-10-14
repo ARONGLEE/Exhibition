@@ -1,32 +1,26 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
 import { Grid, Text, Input, Button } from "../elements/index";
 
 import { useHistory } from "react-router";
-
 import { useDispatch } from "react-redux";
 import { userCreators } from "../redux/modules/user";
-import Header from "../components/Header";
 
 const Login = (props) => {
-  const history = useHistory();
-
   const dispatch = useDispatch();
 
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
-  const [artist, setArtist] = useState("");
+  const [category, setCategory] = useState("");
 
-  const userlogin = {
-    password: pw,
-    nickname: id,
-    isArtist: artist,
+  const handleRadioChange = (e) => {
+    setCategory(e.target.value);
   };
 
   const login = () => {
-    dispatch(userCreators.setLoginDB(userlogin));
+    dispatch(userCreators.setLoginDB(id, pw, category));
   };
+
   return (
     <React.Fragment>
       <Grid
@@ -39,6 +33,32 @@ const Login = (props) => {
         {/* 메인 Text */}
         <Grid center>
           <Text size="32px">ARTIST</Text>
+        </Grid>
+
+        <Grid center margin="10px 0">
+          <label htmlFor="category">
+            <input
+              type="radio"
+              id="user"
+              name="user"
+              value="user"
+              checked={category === "user"}
+              onChange={handleRadioChange}
+            ></input>
+            유저
+          </label>
+
+          <label htmlFor="category">
+            <input
+              type="radio"
+              id="artist"
+              name="artist"
+              value="artist"
+              checked={category === "artist"}
+              onChange={handleRadioChange}
+            ></input>
+            작가
+          </label>
         </Grid>
 
         {/* 아이디 */}

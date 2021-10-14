@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-
 import { Grid, Text, Input, Button } from "../elements";
 
-import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
-
-import { idCheck, emailCheck, nickCheck } from "../shared/regExp";
 import { userCreators } from "../redux/modules/user";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
-  const [is_artist, setArtist] = useState("");
-  const [nick, setNick] = useState("");
+  const [pw, setPw] = React.useState("");
+  const [nick, setNick] = React.useState("");
+  const [category, setCategory] = React.useState("user");
+  const [pwcheck, setPwcheck] = React.useState("");
+
+  const handleRadioChange = (e) => {
+    setCategory(e.target.value);
+  };
 
   const signup = () => {
     if (nick === "" || id === "" || pw === "") {
@@ -23,14 +23,12 @@ const Signup = (props) => {
       return;
     }
 
-    const userinfo = {
-      username: nick,
-      password: pw,
-      nickname: id,
-      isArtist: is_artist,
-    };
+    if (pw !== pwcheck) {
+      window.alert("비밀번호를 다시 확인해 주세요.");
+      return;
+    }
 
-    dispatch(userCreators.registerDB(userinfo));
+    dispatch(userCreators.registerDB(id, pw, nick, category));
   };
 
   return (
@@ -47,34 +45,29 @@ const Signup = (props) => {
         </Grid>
 
         <Grid center margin="10px 0">
-          <input
-            type="radio"
-            name="check"
-            _onChange={(e) => {
-              setArtist(e.target.value);
-            }}
-          />
-          <span
-            style={{
-              padding: "20px",
-            }}
-          >
+          <label htmlFor="category">
+            <input
+              type="radio"
+              id="user"
+              name="user"
+              value="user"
+              checked={category === "user"}
+              onChange={handleRadioChange}
+            ></input>
             유저
-          </span>
-          <input
-            type="radio"
-            name="check"
-            _onChange={(e) => {
-              setArtist(e.target.value);
-            }}
-          />
-          <span
-            style={{
-              padding: "20px ",
-            }}
-          >
+          </label>
+
+          <label htmlFor="category">
+            <input
+              type="radio"
+              id="artist"
+              name="artist"
+              value="artist"
+              checked={category === "artist"}
+              onChange={handleRadioChange}
+            ></input>
             작가
-          </span>
+          </label>
         </Grid>
 
         {/* 닉네임 */}
@@ -89,7 +82,7 @@ const Signup = (props) => {
           />
 
           {/* 닉네임 중복확인 */}
-          <Button
+          {/* <Button
             width="80px"
             padding="16px 0"
             _onChange={(e) => {
@@ -97,7 +90,7 @@ const Signup = (props) => {
             }}
           >
             중복확인
-          </Button>
+          </Button> */}
         </Grid>
 
         {/* 아이디 */}
@@ -111,7 +104,7 @@ const Signup = (props) => {
             }}
           />
           {/* 아이디 중복확인 */}
-          <Button
+          {/* <Button
             width="80px"
             padding="16px 0"
             _onChange={(e) => {
@@ -119,7 +112,7 @@ const Signup = (props) => {
             }}
           >
             중복확인
-          </Button>
+          </Button> */}
         </Grid>
 
         {/* 비밀번호 */}
@@ -142,7 +135,7 @@ const Signup = (props) => {
             padding="16px 14px"
             width="300px"
             _onChange={(e) => {
-              setPw(e.target.value);
+              setPwcheck(e.target.value);
             }}
           />
         </Grid>
@@ -153,7 +146,9 @@ const Signup = (props) => {
             width="300px"
             padding="12px 4px"
             margin="4px"
-            _onClick={signup}
+            _onClick={() => {
+              signup();
+            }}
           >
             회원가입
           </Button>

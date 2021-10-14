@@ -17,13 +17,33 @@ api.interceptors.request.use(function (config) {
 
 export const apis = {
   // user
-  login: (id, pw, artist) =>
-    api.post("/api/login", { password: pw, nickname: id, isArtist: artist }),
-  signup: (is_artist, nick, id, pw) =>
-    api.post("/api/signup", {
-      username: nick,
-      password: pw,
-      nickname: id,
-      isArtist: is_artist,
-    }),
+  login: (id, pw, category) =>
+    api.post(
+      "http://localhost:8080/user/login",
+      JSON.stringify({
+        username: id,
+        password: pw,
+        isArtist: category,
+      }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ),
+  signup: (id, pw, nick, category) =>
+    api.post(
+      "http://localhost:8080/user/signup",
+      JSON.stringify({
+        username: id,
+        password: pw,
+        isArtist: category,
+        nickname: nick,
+      }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    ),
 };

@@ -27,7 +27,12 @@ const Input = (props) => {
   return (
     <React.Fragment>
       <Grid>
-        <ElementInput {...styles} type={type}>
+        <ElementInput
+          {...styles}
+          //아영 - input태그 onChange 추가
+          onChange={_onChange}
+          type={type}
+        >
           {children}
         </ElementInput>
       </Grid>
