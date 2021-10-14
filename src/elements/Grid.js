@@ -67,7 +67,7 @@ const GridBox = styled.div`
     props.background ? `background-color: ${props.background};` : ""}
     ${(props) =>
     props.flex
-      ? `display:flex; place-items: center; align-items: center; justify-content: center;`
+      ? `display:flex; align-items: center; justify-content: space-between;`
       : ""}
     ${(props) => (props.center ? `text-align: center` : "")}
     // 재환: 3x3 정렬을 위한 기본 값 설정
@@ -77,7 +77,11 @@ const GridBox = styled.div`
         grid-gap: 4px; 
         grid-template-columns: repeat(3, minmax(auto, 1fr));
         align-items: center; 
-        justify-content: space-around;`
+        // 최대넓이 설정
+        max-width: 750px;
+        justify-content: space-around;
+        // 양 옆 여백 간격 통일 - 가운데 정렬
+        margin: auto;`
       : ""}
     ${(props) => (props.justifyContent ? `justify-content: left` : "")}
 `;
