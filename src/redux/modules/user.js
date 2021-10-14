@@ -18,13 +18,15 @@ const initialState = {
 };
 
 // Thunk function
-const setLoginDB = (userlogin) => {
+const setLoginDB = (id, pw, category) => {
   return function (dispatch, getState, { history }) {
     apis
-      .login(userlogin)
+      .login(id, pw, category)
       .then((res) => {
         setCookie("token", res.data[0].token);
         localStorage.setItem("role", res.data[1].role);
+        window.alert(document.cookie("token"));
+        window.alert(localStorage.getItem("role"));
         history.replace("/");
       })
       .catch((err) => {
@@ -33,15 +35,17 @@ const setLoginDB = (userlogin) => {
   };
 };
 
-const registerDB = (id, nick, pw, is_artist) => {
+const registerDB = (id, pw, nick, category) => {
   return function (dispatch, getState, { history }) {
     apis
-      .signup(id, nick, pw, is_artist)
+      .signup(id, pw, nick, category)
       .then((res) => {
-        history.push("/");
+        history.push("/login");
+        window.alert("회원가입이 완료되었습니다!");
       })
       .catch((err) => {
-        window.alert("이미 존재하는 닉네임이거나 아이디입니다.");
+        window.alert("회원가입, 서버랑 연동안됬다니까!!!");
+        console.log(err);
       });
   };
 };
