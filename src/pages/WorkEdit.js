@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/artist";
 import { actionCreators as imageActions } from "../redux/modules/image";
 
-const WorkInsert = (props) => {
+const WorkEdit = (props) => {
   const dispatch = useDispatch();
   const preview = useSelector((state) => state.image.preview);
   const { history } = props;
@@ -87,71 +87,71 @@ const WorkInsert = (props) => {
       });
     dispatch(postActions.addWorkDB(content));
   };
-
-  //화면
   return (
     <React.Fragment>
-      <Grid width="450px" margin="100px auto">
-        <Grid margin="10px 0px" center>
-          <label htmlFor="fileUpload">
-            <Image
-              shape="rectangle"
-              src={preview ? preview : "http://via.placeholder.com/400x300"}
-              width="330px"
+      <React.Fragment>
+        <Grid width="450px" margin="100px auto">
+          <Grid margin="10px 0px" center>
+            <label htmlFor="fileUpload">
+              <Image
+                shape="rectangle"
+                src={preview ? preview : "http://via.placeholder.com/400x300"}
+                width="330px"
+              />
+            </label>
+            <input
+              type="file"
+              ref={fileInput}
+              onChange={filePreview}
+              id="fileUpload"
             />
-          </label>
-          <input
-            type="file"
-            ref={fileInput}
-            onChange={filePreview}
-            id="fileUpload"
-          />
+          </Grid>
+          <Grid center>
+            <Input
+              margin="10px 0px"
+              placeholder="제목"
+              _onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+            />
+            <Input
+              margin="10px 0px"
+              placeholder="설명"
+              _onChange={(e) => {
+                setDesc(e.target.value);
+              }}
+            />
+            <Input
+              margin="10px 0px"
+              placeholder="크기"
+              _onChange={(e) => {
+                setSize(e.target.value);
+              }}
+            />
+            <Input
+              margin="10px 0px"
+              placeholder="재료"
+              _onChange={(e) => {
+                setMetarial(e.target.value);
+              }}
+            />
+            <Input
+              margin="10px 0px"
+              placeholder="제작년도"
+              _onChange={(e) => {
+                setMade(e.target.value);
+              }}
+            />
+          </Grid>
+          <Grid center>
+            <Button padding="10px" width="80px" _onClick={addPost}>
+              포스팅
+            </Button>
+          </Grid>
         </Grid>
-        <Grid center>
-          <Input
-            margin="10px 0px"
-            placeholder="제목"
-            _onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
-          <Input
-            margin="10px 0px"
-            placeholder="설명"
-            _onChange={(e) => {
-              setDesc(e.target.value);
-            }}
-          />
-          <Input
-            margin="10px 0px"
-            placeholder="크기"
-            _onChange={(e) => {
-              setSize(e.target.value);
-            }}
-          />
-          <Input
-            margin="10px 0px"
-            placeholder="재료"
-            _onChange={(e) => {
-              setMetarial(e.target.value);
-            }}
-          />
-          <Input
-            margin="10px 0px"
-            placeholder="제작년도"
-            _onChange={(e) => {
-              setMade(e.target.value);
-            }}
-          />
-        </Grid>
-        <Grid center>
-          <Button padding="10px" width="80px" _onClick={addPost}>
-            포스팅
-          </Button>
-        </Grid>
-      </Grid>
+      </React.Fragment>
     </React.Fragment>
   );
 };
 
-export default WorkInsert;
+export default WorkEdit;
