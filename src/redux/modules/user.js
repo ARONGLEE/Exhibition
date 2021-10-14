@@ -53,7 +53,7 @@ const registerDB = (id, pw, nick, category) => {
 const logOutDB = () => {
   return function (dispatch, getState, { history }) {
     deleteCookie("token");
-    localStorage.removeItem("username");
+    localStorage.removeItem("role");
     dispatch(logOut());
     history.push("/login");
   };
@@ -61,7 +61,7 @@ const logOutDB = () => {
 
 const loginCheck = () => {
   return function (dispatch, getState, { history }) {
-    const userId = localStorage.getItem("username");
+    const userId = localStorage.getItem("role");
     const tokenCheck = document.cookie;
     if (tokenCheck) {
       dispatch(Login({ id: userId }));
