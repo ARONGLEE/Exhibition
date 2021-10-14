@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/artist";
 import { actionCreators as imageActions } from "../redux/modules/image";
 
-const WorkEdit = (props) => {
+const WorkUpdate = (props) => {
   const dispatch = useDispatch();
   const preview = useSelector((state) => state.image.preview);
   const { history } = props;
@@ -154,4 +154,4 @@ const WorkEdit = (props) => {
   );
 };
 
-export default WorkEdit;
+export default WorkUpdate;
