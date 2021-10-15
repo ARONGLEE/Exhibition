@@ -1,22 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
-import Grid from "../elements/Grid";
-import Image from "../elements/Image";
+import { Grid, Image, Button } from "../elements";
 import ModalContainer from "./ModalContainer";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { getWorkMiddleware } from '../redux/modules/work';
+import { useDispatch, useSelector } from "react-redux";
+import { getWorkMiddleware } from "../redux/modules/work";
+import { history } from "../redux/configureStore";
 
-const Work = (
-  props
-  ) => {
-    console.log(props);
+const Work = (props) => {
+  console.log(props);
   // const dispatch = useDispatch();
   // const work = useSelector((store) => store.work.work_list);
 
   return (
     <React.Fragment>
-        <Image shape="rectangle" src={props.image}/>
+      <Image shape="rectangle" src={props.image} />
+      {/* 아영- 수정버튼 추가 */}
+      <Button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          history.push(`/update/${props.id}`);
+        }}
+      >
+        수정
+      </Button>
     </React.Fragment>
   );
 };
