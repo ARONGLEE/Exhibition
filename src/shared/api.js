@@ -19,7 +19,7 @@ export const apis = {
   // user
   login: (id, pw, category) =>
     api.post(
-      "../redux/modules/user",
+      "/user/login",
       JSON.stringify({
         username: id,
         password: pw,
@@ -33,7 +33,7 @@ export const apis = {
     ),
   signup: (id, pw, nick, category) =>
     api.post(
-      "../redux/modules/user",
+      "/user/signup",
       JSON.stringify({
         username: id,
         password: pw,

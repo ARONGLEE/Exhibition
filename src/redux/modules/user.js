@@ -1,3 +1,5 @@
+// 승민 수정사항
+
 import { createAction, handleActions } from "redux-actions";
 import produce from "immer";
 import { deleteCookie, setCookie } from "../../shared/Cookie";
@@ -25,8 +27,7 @@ const setLoginDB = (id, pw, category) => {
       .then((res) => {
         setCookie("token", res.data[0].token);
         localStorage.setItem("role", res.data[1].role);
-        window.alert(document.cookie("token"));
-        window.alert(localStorage.getItem("role"));
+
         history.replace("/");
       })
       .catch((err) => {
@@ -40,7 +41,7 @@ const registerDB = (id, pw, nick, category) => {
     apis
       .signup(id, pw, nick, category)
       .then((res) => {
-        history.push("/login");
+        history.replace("/login");
         window.alert("회원가입이 완료되었습니다!");
       })
       .catch((err) => {
