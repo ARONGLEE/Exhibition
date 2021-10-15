@@ -1,3 +1,5 @@
+// 승민 수정사항
+
 import React, { useState } from "react";
 import { Grid, Text, Input, Button } from "../elements";
 
@@ -80,17 +82,6 @@ const Signup = (props) => {
               setNick(e.target.value);
             }}
           />
-
-          {/* 닉네임 중복확인 */}
-          {/* <Button
-            width="80px"
-            padding="16px 0"
-            _onChange={(e) => {
-              setNick(e.target.value);
-            }}
-          >
-            중복확인
-          </Button> */}
         </Grid>
 
         {/* 아이디 */}
@@ -103,16 +94,6 @@ const Signup = (props) => {
               setId(e.target.value);
             }}
           />
-          {/* 아이디 중복확인 */}
-          {/* <Button
-            width="80px"
-            padding="16px 0"
-            _onChange={(e) => {
-              setId(e.target.value);
-            }}
-          >
-            중복확인
-          </Button> */}
         </Grid>
 
         {/* 비밀번호 */}

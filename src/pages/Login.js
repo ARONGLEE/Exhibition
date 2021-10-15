@@ -1,3 +1,5 @@
+// 승민 수정사항
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Grid, Text, Input, Button } from "../elements/index";
