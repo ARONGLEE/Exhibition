@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button, Grid, Input, Image } from "../elements";
 
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/artist";
+import { actionCreators as postActions } from "../redux/modules/work";
 import { actionCreators as imageActions } from "../redux/modules/image";
 
 const WorkInsert = (props) => {
@@ -16,21 +16,23 @@ const WorkInsert = (props) => {
   const [title, setTitle] = React.useState("");
   const [desc, setDesc] = React.useState("");
   const [size, setSize] = React.useState("");
-  const [metarial, setMetarial] = React.useState("");
+  const [matarial, setMatarial] = React.useState("");
   const [made, setMade] = React.useState("");
 
   const content = {
     workTitle: title,
     workDesc: desc,
     workSize: size,
-    workMetarial: metarial,
+    workMaterial: matarial,
     workMade: made,
   };
+
+  console.log(content);
 
   //input태그 포커스 작업
   const fileInput = React.useRef();
 
-  //파일 미리보기
+  // //파일 미리보기
   const filePreview = () => {
     const reader = new FileReader();
     const file = fileInput.current.files[0];
@@ -43,9 +45,8 @@ const WorkInsert = (props) => {
 
   //작성 버튼 눌렀을 때 실행되는 함수
   const addPost = () => {
-    //const file = fileInput.current.files[0];
-    let file = document.getElementById("fileUpload").files[0];
-    console.log(file);
+    const file = fileInput.current.files[0];
+    //let file = document.getElementById("fileUpload").files[0];
 
     //유효성 검사
     if (!file) {
@@ -58,7 +59,7 @@ const WorkInsert = (props) => {
       title === "" ||
       desc === "" ||
       size === "" ||
-      metarial === "" ||
+      matarial === "" ||
       made === ""
     ) {
       window.alert("빈칸을 모두 입력해주세요!");
@@ -68,24 +69,22 @@ const WorkInsert = (props) => {
     //파일 포함한 글작성 데이터 보내는 작업
     const formData = new FormData();
     formData.append("file", file);
-    formData.append(
-      "key",
-      new Blob([JSON.stringify(content), { type: "application/json" }])
-    );
+
     axios
-      .post("work/insert", formData, {
-        headers: {
-          // "X-AUTH-TOKEN": token,
-          "content-type": "multipart/form-data",
-        },
+      .create({
+        baseURL: "http://3.35.218.192",
       })
+      .post("/image", formData, {})
       .then((res) => {
-        console.log(res);
+        window.alert(res.data);
+        content["image"] = res.data;
+        console.log(content);
+        window.alert(content.workDesc);
+        dispatch(postActions.addWorkDB(content));
       })
       .catch((err) => {
         console.log(err);
       });
-    dispatch(postActions.addWorkDB(content));
   };
 
   //화면
@@ -113,6 +112,7 @@ const WorkInsert = (props) => {
             placeholder="제목"
             _onChange={(e) => {
               setTitle(e.target.value);
+              console.log(e.target.value);
             }}
           />
           <Input
@@ -133,7 +133,7 @@ const WorkInsert = (props) => {
             margin="10px 0px"
             placeholder="재료"
             _onChange={(e) => {
-              setMetarial(e.target.value);
+              setMatarial(e.target.value);
             }}
           />
           <Input

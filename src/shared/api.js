@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "",
+  baseURL: "http://3.35.218.192/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
     accept: "application/json,",
@@ -19,7 +19,7 @@ export const apis = {
   // user
   login: (id, pw, category) =>
     api.post(
-      "http://localhost:8080/user/login",
+      "../redux/modules/user",
       JSON.stringify({
         username: id,
         password: pw,
@@ -33,7 +33,7 @@ export const apis = {
     ),
   signup: (id, pw, nick, category) =>
     api.post(
-      "http://localhost:8080/user/signup",
+      "../redux/modules/user",
       JSON.stringify({
         username: id,
         password: pw,
@@ -46,4 +46,13 @@ export const apis = {
         },
       }
     ),
+  //article
+  // 작품 불러오기
+  getWork: () => api.get("/"),
+  // 게시물 작성하기
+  createWork: (contents) => api.post("/work/insert", JSON.stringify(contents)),
+  // 게시물 수정하기
+  editWork: (id, contents) => api.put("", contents),
+  // 게시물 삭제하기
+  delWork: (id) => api.delete(""),
 };

@@ -10,22 +10,25 @@ import { actionCreators as imageActions } from "../redux/modules/image";
 const WorkUpdate = (props) => {
   const dispatch = useDispatch();
   const preview = useSelector((state) => state.image.preview);
+  const work_list = useSelector((state) => state.work.list);
   const { history } = props;
 
-  //입력 값 저장
-  const [title, setTitle] = React.useState("");
-  const [desc, setDesc] = React.useState("");
-  const [size, setSize] = React.useState("");
-  const [metarial, setMetarial] = React.useState("");
-  const [made, setMade] = React.useState("");
+  const [content, setContent] = React.useState({
+    workTitle: "",
+    workDesc: "",
+    workSize: "",
+    workMatarial: "",
+    workMade: "",
+  });
 
-  const content = {
-    workTitle: title,
-    workDesc: desc,
-    workSize: size,
-    workMetarial: metarial,
-    workMade: made,
-  };
+  const work_id = props.match.params.id;
+  let _post = work_list.find((p) => p.id === work_id);
+
+  console.log(_post);
+
+  // React.useEffect(() => {
+  //   dispatch(imageActions.setPreview(_post.image_url));
+  // }, []);
 
   //input태그 포커스 작업
   const fileInput = React.useRef();
@@ -41,52 +44,11 @@ const WorkUpdate = (props) => {
     };
   };
 
-  //작성 버튼 눌렀을 때 실행되는 함수
-  const addPost = () => {
-    //const file = fileInput.current.files[0];
-    let file = document.getElementById("fileUpload").files[0];
-    console.log(file);
-
-    //유효성 검사
-    if (!file) {
-      window.alert("이미지를 업로드해주세요!");
-      return;
-    }
-
-    //유효성 검사
-    if (
-      title === "" ||
-      desc === "" ||
-      size === "" ||
-      metarial === "" ||
-      made === ""
-    ) {
-      window.alert("빈칸을 모두 입력해주세요!");
-      return;
-    }
-
-    //파일 포함한 글작성 데이터 보내는 작업
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append(
-      "key",
-      new Blob([JSON.stringify(content), { type: "application/json" }])
-    );
-    axios
-      .post("work/insert", formData, {
-        headers: {
-          // "X-AUTH-TOKEN": token,
-          "content-type": "multipart/form-data",
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    dispatch(postActions.addWorkDB(content));
+  //수정 버튼 눌렀을 때 실행되는 함수
+  const editWork = () => {
+    dispatch(postActions.editWorkDB(work_id, { content: content }));
   };
+
   return (
     <React.Fragment>
       <React.Fragment>
@@ -111,41 +73,41 @@ const WorkUpdate = (props) => {
               margin="10px 0px"
               placeholder="제목"
               _onChange={(e) => {
-                setTitle(e.target.value);
+                setContent({ ...content, workTitle: e.target.value });
               }}
             />
             <Input
               margin="10px 0px"
               placeholder="설명"
               _onChange={(e) => {
-                setDesc(e.target.value);
+                setContent({ ...content, workDesc: e.target.value });
               }}
             />
             <Input
               margin="10px 0px"
               placeholder="크기"
               _onChange={(e) => {
-                setSize(e.target.value);
+                setContent({ ...content, workSize: e.target.value });
               }}
             />
             <Input
               margin="10px 0px"
               placeholder="재료"
               _onChange={(e) => {
-                setMetarial(e.target.value);
+                setContent({ ...content, workMatarial: e.target.value });
               }}
             />
             <Input
               margin="10px 0px"
               placeholder="제작년도"
               _onChange={(e) => {
-                setMade(e.target.value);
+                setContent({ ...content, workMade: e.target.value });
               }}
             />
           </Grid>
           <Grid center>
-            <Button padding="10px" width="80px" _onClick={addPost}>
-              포스팅
+            <Button padding="10px" width="80px" _onClick={editWork}>
+              수정완료
             </Button>
           </Grid>
         </Grid>
