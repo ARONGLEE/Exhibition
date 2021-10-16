@@ -6,7 +6,7 @@ const Profile = (props) => {
   return (
     <React.Fragment>
       <Grid flex padding="10px" width="50vw" margin="auto">
-        <Grid flex justify-content="left" width="50%">
+        <Grid flex justify-content="left" width="50%" margin="0px 20px">
           <Image shape="circle" src={props.src} />
         </Grid>
         <Grid>
