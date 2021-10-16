@@ -20,7 +20,7 @@
 <br/>
 
 ## :computer: 사용기술 
-- Front_end : React, JavaScript
+- Front_end : React, JavaScript, CSS
 - Deploy : AWS S3
 <br/>
 <br/>
