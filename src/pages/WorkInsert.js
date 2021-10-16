@@ -38,7 +38,7 @@ const WorkInsert = (props) => {
     const file = fileInput.current.files[0];
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      console.log(reader.result);
+      // console.log(reader.result);
       dispatch(imageActions.setPreview(reader.result));
     };
   };
@@ -76,10 +76,10 @@ const WorkInsert = (props) => {
       })
       .post("/image", formData, {})
       .then((res) => {
-        window.alert(res.data);
+        // window.alert(res.data);
         content["image"] = res.data;
-        console.log(content);
-        window.alert(content.workDesc);
+        // console.log(content);
+        // window.alert(content.workDesc);
         dispatch(postActions.addWorkDB(content));
       })
       .catch((err) => {

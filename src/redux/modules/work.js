@@ -36,8 +36,8 @@ const initialWork = {
 const getWorkMiddleware = () => {
   return (dispatch, getState, { history }) => {
     apis.getWork().then((res) => {
-      window.alert(res.data);
-      console.log(res.data);
+      // window.alert(res.data);
+      // console.log(res.data);
       const work_list = res.data;
       dispatch(setWork(work_list));
     });
@@ -60,12 +60,12 @@ const getWorkMiddleware = () => {
 //게시글 작성 (추가)
 const addWorkDB = (content) => {
   return function (dispatch, getState, { history }) {
-    window.alert(content);
+    // window.alert(content);
     apis
       .createWork(content)
       .then((res) => {
-        dispatch(addWork(content));
-        console.log(res.data);
+        // dispatch(addWork(content));
+        // console.log(res.data);
         history.push("/");
         dispatch(imageActions.setPreview(null));
       })

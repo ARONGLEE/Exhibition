@@ -10,6 +10,8 @@ import { userCreators } from "../redux/modules/user";
 
 import { useSelector, useDispatch } from "react-redux";
 
+import {GrLogin, GrLogout} from "react-icons/gr";
+
 const Header = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -25,13 +27,12 @@ const Header = (props) => {
               ARTIST
             </Text>
           </Grid>
-          <Button
-            _onClick={() => {
+          <GrLogout
+            onClick={() => {
               dispatch(userCreators.logOutDB());
             }}
           >
-            로그아웃
-          </Button>
+          </GrLogout>
         </Grid>
       </React.Fragment>
     );
@@ -40,17 +41,15 @@ const Header = (props) => {
       <React.Fragment>
         <Grid flex padding="20px 46px">
           <Grid>
-            <Text margin="0px" size="32px" color="#46DE99" bold>
+            <Text margin="0px" size="32px" color="black" bold>
               ARTIST
             </Text>
           </Grid>
-          <Button
-            _onClick={() => {
-              history.push("/login");
-            }}
-          >
-            <i className="fas fa-user"></i>
-          </Button>
+            <GrLogin
+              onClick={() => {
+                history.push("/login");
+              }}
+            />
         </Grid>
       </React.Fragment>
     );
