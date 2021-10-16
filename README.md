@@ -25,6 +25,6 @@
 <br/>
 <br/>
 
-## :orange_book: 프로젝트 참고페이지
+## :orange_book: 프로젝트 정리페이지
 https://guiltless-dimple-401.notion.site/Gallery-house-bf597ad790c14bd2b4200d8f73b06e4d
 
