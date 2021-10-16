@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router";
 import { Grid, Text, Button } from "../elements";
 
-import { actionCreators as userActions } from "../redux/modules/work";
+import { userCreators } from "../redux/modules/user";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -14,7 +14,7 @@ const Header = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const is_login = document.cookie("token");
+  const is_login = document.cookie;
 
   if (is_login) {
     return (
@@ -27,7 +27,7 @@ const Header = (props) => {
           </Grid>
           <Button
             _onClick={() => {
-              dispatch(userActions.logOutFB());
+              dispatch(userCreators.logOutDB());
             }}
           >
             로그아웃

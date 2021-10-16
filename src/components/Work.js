@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 import { Grid, Image, Button } from "../elements";
-import ModalContainer from "./ModalContainer";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getWorkMiddleware } from "../redux/modules/work";
@@ -16,7 +15,7 @@ const Work = (props) => {
     <React.Fragment>
       <Image shape="rectangle" src={props.image} />
       {/* 아영- 수정버튼 추가 */}
-      <Button
+      {/* <Button
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -24,7 +23,7 @@ const Work = (props) => {
         }}
       >
         수정
-      </Button>
+      </Button> */}
     </React.Fragment>
   );
 };

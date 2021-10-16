@@ -4,6 +4,7 @@ import Work from "../components/Work";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as workActions } from "../redux/modules/work";
 import { Grid } from "../elements";
+import img from "../shared/sorry.jpg";
 
 const WorkDetail = (props) => {
   const dispatch = useDispatch();
@@ -22,7 +23,9 @@ const WorkDetail = (props) => {
         {work && (
           <Work {...work} is_me={work.user_info.user_id === user_info?.uid} />
         )}
-        상세페이지
+        <div width="40%">
+          <img width="30%" src={img} />
+        </div>
       </Grid>
     </React.Fragment>
   );
