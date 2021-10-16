@@ -66,7 +66,7 @@ const addWorkDB = (content) => {
       .then((res) => {
         dispatch(addWork(content));
         console.log(res.data);
-        history.goBack();
+        history.push("/");
         dispatch(imageActions.setPreview(null));
       })
       .catch((err) => {

@@ -30,7 +30,7 @@ const WorkList = (props) => {
                   history.push(`/detail/${w.id}`);
                 }}
               >
-                <Work key={w.id} {...w} />
+                <Work {...w} />
               </Grid>
             );
             // ...w 스프레드 문법으로 w = work에 대한 모든 정보를 props로 다 넘겨준다.

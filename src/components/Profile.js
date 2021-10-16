@@ -1,18 +1,12 @@
 import React from "react";
 import { Grid, Text, Image } from "../elements";
-import HeartButton from "./HeartButton";
+// import HeartButton from "./HeartButton";
 
 const Profile = (props) => {
   return (
     <React.Fragment>
-      <Grid
-        flex
-        border="1px solid #DCDCDC"
-        padding="10px"
-        width="70vw"
-        margin="auto"
-      >
-        <Grid flex justify-content="left" width="30%">
+      <Grid flex padding="10px" width="50vw" margin="auto">
+        <Grid flex justify-content="left" width="50%">
           <Image shape="circle" src={props.src} />
         </Grid>
         <Grid>
@@ -24,9 +18,7 @@ const Profile = (props) => {
             Description
           </Text>
         </Grid>
-        <Grid>
-          <HeartButton />
-        </Grid>
+        <Grid>{/* <HeartButton /> */}</Grid>
       </Grid>
     </React.Fragment>
   );
