@@ -97,11 +97,11 @@ const Login = (props) => {
         </Grid>
 
         {/* 카카오 로그인 */}
-        <Grid flex>
+        {/* <Grid flex>
           <KakaoButton background="black" width="300px" padding="12px 4px">
             Login with Kakao
           </KakaoButton>
-        </Grid>
+        </Grid> */}
 
         {/* 회원가입 Text & 버튼 */}
         <Grid flex>
